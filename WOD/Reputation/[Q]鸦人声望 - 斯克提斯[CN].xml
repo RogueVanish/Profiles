@@ -1,0 +1,75 @@
+<HBProfile>
+   <Name>[Q]鸦人声望 - 斯克提斯[CN]</Name>
+   <MinLevel>90</MinLevel>
+   <MaxLevel>101</MaxLevel>
+   
+   <MinDurability>0.3</MinDurability>
+   <MinFreeBagSlots>1</MinFreeBagSlots>
+   
+   <MailGrey>false</MailGrey>
+   <MailWhite>false</MailWhite>
+   <MailGreen>false</MailGreen>
+   <MailBlue>false</MailBlue>
+   <MailPurple>false</MailPurple>
+   
+   <SellGrey>true</SellGrey>
+   <SellWhite>false</SellWhite>
+   <SellGreen>false</SellGreen>
+   <SellBlue>false</SellBlue>
+   <SellPurple>false</SellPurple>
+   
+   <TargetElites>true</TargetElites>	
+
+   <AvoidMobs>
+   </AvoidMobs>
+
+   <Blackspots>
+   </Blackspots>
+
+   <Mailboxes>
+   </Mailboxes>
+   
+   
+   <Vendors>       
+   </Vendors>   
+
+   <QuestOrder>
+       <SetGrindArea>
+           <GrindArea>
+               <TargetMinLevel>90</TargetMinLevel>
+               <TargetMaxLevel>105</TargetMaxLevel>
+               <MaxDistance>100</MaxDistance>
+
+               <RandomizeHotspots>false</RandomizeHotspots>
+               
+               <MobIds>85542 88078 84303 83988 84467</MobIds>
+
+               <UseMount Value="true" />
+
+               <Hotspots>
+			   <Hotspot X="912.0945" Y="1236.481" Z="179.8436" />
+			   <Hotspot X="904.2739" Y="1171.69" Z="180.3117" />
+			   <Hotspot X="930.2814" Y="1106.465" Z="177.533" />
+
+   <While Condition="(Me.FreeBagSlots &lt; 1)">
+			<CustomBehavior File="Message" Text="现在去修理售卖邮寄物品。" LogColor="Lime" />
+			<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+				<CustomBehavior File="WaitTimer" WaitTime="750" />
+				<CustomBehavior File="RunMacro" Macro="/cast 旅行者的苔原猛犸象\n/cast 雄壮远足牦牛" />
+				<CustomBehavior File="WaitTimer" WaitTime="2000" />
+				<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" />
+				<CustomBehavior File="WaitTimer" WaitTime="5500" />
+				<Else>
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
+					<CustomBehavior File="Message" Text="你没有拥有修理坐骑。" LogColor="Orange" />
+				</Else>
+			</If>
+   </While>
+               </Hotspots>
+           </GrindArea>    
+       </SetGrindArea>
+<!-- Grind until level 105, then we'll move to a better grind area -->
+<GrindUntil Nav="Fly" Condition="Me.Level >= 105.0" />
+  </QuestOrder>
+</HBProfile>
