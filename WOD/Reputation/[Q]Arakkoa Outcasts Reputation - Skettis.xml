@@ -1,5 +1,29 @@
 <HBProfile>
-   <Name>[Q]鸦人声望 - 斯克提斯[CN]</Name>
+   <!--
+      PROFILE EXPECTATIONS:
+         * When using this profile, be certain to set the HonorBuddy bot to (select only one):
+                ( ) Gatherbuddy2
+                ( ) Grinding / Mixed
+                (*) Questing
+                ( ) PvP
+   
+         * This profile is appropriate for (check all that apply):
+                [X] Alliance   [ ] Achievement
+                [X] Horde      [X] Farming
+                               [ ] Leveling
+                               [ ] PvP
+                               [X] Questing
+                               [ ] Reputation
+                               [ ] Seasonal
+         * This profile is personally used for Arakkoa Outcasts Reputation.
+
+         * This profile works good with Qusting Mode and TuanHA Combat Routine Full AFK Mode.
+
+         * No mail, will use vendor mount.
+         
+         * See here for the place on the map:http://www.wowhead.com/guide=2600/arakkoa-outcasts-reputation-guide
+    -->
+   <Name>[Q]Arakkoa Outcasts Reputation - Skettis</Name>
    <MinLevel>90</MinLevel>
    <MaxLevel>101</MaxLevel>
    
@@ -42,7 +66,7 @@
 
                <RandomizeHotspots>false</RandomizeHotspots>
                
-               <MobIds>85542 88078 84303 83988 84467</MobIds>
+               <MobIds>85542 88078 84303 83988 84467 89085</MobIds>
 
                <UseMount Value="true" />
 
@@ -51,18 +75,18 @@
 			   <Hotspot X="904.2739" Y="1171.69" Z="180.3117" />
 			   <Hotspot X="930.2814" Y="1106.465" Z="177.533" />
 
-   <While Condition="(Me.FreeBagSlots &lt; 1)">
-			<CustomBehavior File="Message" Text="现在去修理售卖邮寄物品。" LogColor="Lime" />
+   <While Condition="(Me.FreeBagSlots &lt; 5)">
+			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 			<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
 			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
 				<CustomBehavior File="WaitTimer" WaitTime="750" />
-				<CustomBehavior File="RunMacro" Macro="/cast 旅行者的苔原猛犸象\n/cast 雄壮远足牦牛" />
+				<CustomBehavior File="RunMacro" Macro="/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
 				<CustomBehavior File="WaitTimer" WaitTime="2000" />
 				<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" />
 				<CustomBehavior File="WaitTimer" WaitTime="5500" />
 				<Else>
 					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
-					<CustomBehavior File="Message" Text="你没有拥有修理坐骑。" LogColor="Orange" />
+					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
 				</Else>
 			</If>
    </While>
