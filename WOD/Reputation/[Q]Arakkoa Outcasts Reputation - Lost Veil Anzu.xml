@@ -1,0 +1,101 @@
+<HBProfile>
+   <!--
+      PROFILE EXPECTATIONS:
+         * When using this profile, be certain to set the HonorBuddy bot to (select only one):
+                ( ) Gatherbuddy2
+                ( ) Grinding / Mixed
+                (*) Questing
+                ( ) PvP
+   
+         * This profile is appropriate for (check all that apply):
+                [X] Alliance   [ ] Achievement
+                [X] Horde      [X] Farming
+                               [ ] Leveling
+                               [ ] PvP
+                               [X] Questing
+                               [ ] Reputation
+                               [ ] Seasonal
+         * This profile is personally used for Arakkoa Outcasts Reputation.
+         
+         * This profile works good with Qusting Mode and TuanHA Combat Routine Full AFK Mode.
+         
+         * No mail, will use vendor mount.
+         
+         * See here for the place on the map:http://www.wowhead.com/guide=2600/arakkoa-outcasts-reputation-guide
+    -->
+   <Name>[Q]Arakkoa Outcasts Reputation - Lost Veil Anzu</Name>
+   <MinLevel>90</MinLevel>
+   <MaxLevel>101</MaxLevel>
+   
+   <MinDurability>0.3</MinDurability>
+   <MinFreeBagSlots>1</MinFreeBagSlots>
+   
+   <MailGrey>false</MailGrey>
+   <MailWhite>false</MailWhite>
+   <MailGreen>false</MailGreen>
+   <MailBlue>false</MailBlue>
+   <MailPurple>false</MailPurple>
+   
+   <SellGrey>true</SellGrey>
+   <SellWhite>false</SellWhite>
+   <SellGreen>false</SellGreen>
+   <SellBlue>false</SellBlue>
+   <SellPurple>false</SellPurple>
+   
+   <TargetElites>true</TargetElites>	
+
+   <AvoidMobs>
+   </AvoidMobs>
+
+   <Blackspots>
+   </Blackspots>
+
+   <Mailboxes>
+   </Mailboxes>
+   
+   
+   <Vendors>       
+   </Vendors>   
+
+   <QuestOrder>
+       <SetGrindArea>
+           <GrindArea>
+               <TargetMinLevel>90</TargetMinLevel>
+               <TargetMaxLevel>105</TargetMaxLevel>
+               <MaxDistance>100</MaxDistance>
+
+               <RandomizeHotspots>false</RandomizeHotspots>
+               
+               <MobIds>86205 89127 86155</MobIds>
+
+               <UseMount Value="true" />
+
+               <Hotspots>
+			   <Hotspot X="-589.5612" Y="236.7711" Z="-0.2863726" />
+			   <Hotspot X="-535.8906" Y="213.543" Z="-0.2870283" />
+			   <Hotspot X="-496.9481" Y="201.9046" Z="1.070038" />
+			   <Hotspot X="-465.0392" Y="206.6222" Z="-0.2879359" />
+			   <Hotspot X="-413.4137" Y="204.6481" Z="-0.2887671" />
+			   
+   <While Condition="(Me.FreeBagSlots &lt; 5)">
+			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+			<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+				<CustomBehavior File="WaitTimer" WaitTime="750" />
+				<CustomBehavior File="RunMacro" Macro="/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
+				<CustomBehavior File="WaitTimer" WaitTime="2000" />
+				<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" />
+				<CustomBehavior File="WaitTimer" WaitTime="5500" />
+				<Else>
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
+					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
+				</Else>
+			</If>
+   </While>
+               </Hotspots>
+           </GrindArea>    
+       </SetGrindArea>
+<!-- Grind until level 105, then we'll move to a better grind area -->
+<GrindUntil Nav="Fly" Condition="Me.Level >= 105.0" />
+  </QuestOrder>
+</HBProfile>
