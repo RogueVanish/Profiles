@@ -1,0 +1,118 @@
+<HBProfile>
+   <!--
+      PROFILE EXPECTATIONS:
+         * When using this profile, be certain to set the HonorBuddy bot to (select only one):
+                ( ) Gatherbuddy2
+                ( ) Grinding / Mixed
+                (*) Questing
+                ( ) PvP
+   
+         * This profile is appropriate for (check all that apply):
+                [X] Alliance   [ ] Achievement
+                [X] Horde      [X] Farming
+                               [ ] Leveling
+                               [ ] PvP
+                               [X] Questing
+                               [ ] Reputation
+                               [ ] Seasonal
+         * This profile is personally used for skinning and also some cloth.
+
+         * This profile works good with Qusting Mode and TuanHA Combat Routine Full AFK Mode.
+
+         * Mail and Vendor supported.
+         
+         * See here for the place on the map:http://www.wowhead.com/npc=81902
+    -->
+   <Name>[Q]Skinning - Hallvalor,Nagrand</Name>
+   <MinLevel>90</MinLevel>
+   <MaxLevel>101</MaxLevel>
+   
+   <MinDurability>0.3</MinDurability>
+   <MinFreeBagSlots>1</MinFreeBagSlots>
+   
+   <MailGrey>false</MailGrey>
+   <MailWhite>true</MailWhite>
+   <MailGreen>true</MailGreen>
+   <MailBlue>true</MailBlue>
+   <MailPurple>true</MailPurple>
+   
+   <SellGrey>true</SellGrey>
+   <SellWhite>false</SellWhite>
+   <SellGreen>false</SellGreen>
+   <SellBlue>false</SellBlue>
+   <SellPurple>false</SellPurple>
+   
+   <TargetElites>false</TargetElites>	
+   
+   <AvoidMobs>
+        <Mob Name="Sabermaw Mystic" Entry="80056"  />
+        <Mob Name="Sabermaw Scarfang" Entry="78976" />
+        <Mob Name="Sabermaw Mauler" Entry="78990" />
+        <Mob Name="Highmaul Archaeologian" Entry="82619" />
+        <Mob Name="Raging Crusher" Entry="80144" />
+        <Mob Name="Banthar" Entry="82119" />
+        <Mob Name="Gnarlhoof the Rabid" Entry="82778" />
+        <Mob Name="Flinthide" Entry="83483" />
+        <Mob Name="Sabermaw Mauler" Entry="78990" />
+        <Mob Name="Redclaw the Feral" Entry="82755" />
+        <Mob Name="Slithershock Eel" Entry="83742" />
+   </AvoidMobs>
+
+   <Blackspots>
+        <Blackspot X="3100.125" Y="4328.107" Z="155.09" Radius="5" />
+   </Blackspots>
+
+   <Mailboxes>
+        <Mailbox X="3403.462" Y="5781.711" Z="37.6432" />
+   </Mailboxes>
+   
+   
+   <Vendors>       
+        <Vendor Name="Tradesman Portanuus" Entry="81253" Type="Repair" X="3382.07" Y="5781.906" Z="37.64205" />
+   </Vendors>   
+
+   <QuestOrder>
+       <SetGrindArea>
+           <GrindArea>
+               <TargetMinLevel>90</TargetMinLevel>
+               <TargetMaxLevel>100</TargetMaxLevel>
+               <MaxDistance>100</MaxDistance>
+
+               <RandomizeHotspots>false</RandomizeHotspots>
+               
+               <MobIds>81902</MobIds>
+      
+               <Hotspots>
+			   <Hotspot X="3285.96" Y="4215.98" Z="212.33" />
+			   <Hotspot X="3197.00" Y="4205.67" Z="205.72" />
+			   <Hotspot X="3180.17" Y="4244.01" Z="205.86" />
+			   <Hotspot X="3145.21" Y="4209.82" Z="203.99" />
+			   <Hotspot X="3071.33" Y="4197.57" Z="202.99" />
+			   <Hotspot X="3042.07" Y="4310.46" Z="165.23" />
+			   <Hotspot X="3129.46" Y="4281.05" Z="165.22" />
+			   <Hotspot X="3056.41" Y="4238.84" Z="185.91" />
+			   <Hotspot X="3049.49" Y="4198.35" Z="198.25" />
+			   <Hotspot X="3285.96" Y="4215.98" Z="212.33" />
+
+   <While Condition="(Me.FreeBagSlots &lt; 5)">
+			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+			<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+				<CustomBehavior File="WaitTimer" WaitTime="750" />
+				<CustomBehavior File="RunMacro" Macro="/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
+				<CustomBehavior File="WaitTimer" WaitTime="2000" />
+				<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" />
+				<CustomBehavior File="WaitTimer" WaitTime="5500" />
+				<Else>
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
+					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
+				</Else>
+			</If>
+   </While>
+               </Hotspots>
+           </GrindArea>    
+       </SetGrindArea>
+<!-- Grind until level 105, then we'll move to a better grind area -->
+<GrindUntil Nav="Fly" Condition="Me.Level >= 105.0" />
+  </QuestOrder>
+</HBProfile>
