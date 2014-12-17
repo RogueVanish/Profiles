@@ -77,7 +77,7 @@
 			   <Hotspot X="-465.0392" Y="206.6222" Z="-0.2879359" />
 			   <Hotspot X="-413.4137" Y="204.6481" Z="-0.2887671" />
 			   
-   <While Condition="(Me.FreeBagSlots &lt; 5)">
+   <While Condition="(Me.FreeBagSlots &lt; 1)">
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 			<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
 			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
